@@ -1,0 +1,7 @@
+fastapi==0.68.0
+uvicorn==0.15.0
+sqlalchemy==1.4.25
+alembic==1.7.4
+#psycopg2==2.9.1  # If you're using PostgreSQL as your database
+# Add any other dependencies you need below this line
+#install the tool using the sudo apt install libpq-dev

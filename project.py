@@ -21,6 +21,10 @@ def get_db():
         db.close()
 
 
+@app.get("/test")
+async def test(db: Session = Depends(get_db)):
+    return "Hello"
+
 @app.get("/")
 async def read_all(db: Session = Depends(get_db)):
     return db.query(models.Users).all()

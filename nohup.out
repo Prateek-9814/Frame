@@ -1,0 +1,8 @@
+INFO:     Will watch for changes in these directories: ['/home/ubuntu/Frame']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [4460] using WatchFiles
+INFO:     Started server process [4462]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     106.206.75.244:6668 - "GET /docs HTTP/1.1" 200 OK
+INFO:     106.206.75.244:6668 - "GET /openapi.json HTTP/1.1" 200 OK
