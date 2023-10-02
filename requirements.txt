@@ -1,7 +1,21 @@
+#fastapi==0.68.0i
+#uvicorn==0.15.0
+#sqlalchemy==1.4.25
+#alembic==1.7.4
+#psycopg2==2.9.1  # If you're using PostgreSQL as your database
+# Add any other dependencies you need below this line
+#install the tool using the sudo apt install libpq-dev
 fastapi==0.68.0
 uvicorn==0.15.0
 sqlalchemy==1.4.25
 alembic==1.7.4
-#psycopg2==2.9.1  # If you're using PostgreSQL as your database
-# Add any other dependencies you need below this line
-#install the tool using the sudo apt install libpq-dev
+psycopg2-binary==2.9.1
+starlette==0.14.2
+pydantic==1.10.13
+asgiref==3.7.2
+click==8.1.7
+h11==0.14.0
+greenlet==2.0.2
+Mako==1.2.4
+typing-extensions==4.8.0
+MarkupSafe==2.1.3
