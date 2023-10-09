@@ -21,7 +21,7 @@ spec:
         - containerPort: 8000
         env:
         - name: DATABASE_URL
-          value: "postgresql+psycopg2://postgres:123456789@abc/booking_portal"
+          value: "postgresql+psycopg2://postgres:123456789@postgres"
 
 ---
 apiVersion: v1
