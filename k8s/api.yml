@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: prateek9814
+        image: prateek9814/book
         ports:
         - containerPort: 8000
         env:
