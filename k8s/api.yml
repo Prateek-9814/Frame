@@ -5,7 +5,7 @@ metadata:
   labels:
     app: api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: api
@@ -21,19 +21,19 @@ spec:
         - containerPort: 8000
         env:
         - name: DATABASE_URL
-          value: "postgresql+psycopg2://postgres:123456789@postgres"
+          value: "postgresql+psycopg2://postgres:123456789@postgres-service"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: api-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: api
   ports:
     - protocol: TCP
       port: 8000
       targetPort: 8000
-      nodePort: 31000
+      
