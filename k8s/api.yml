@@ -17,6 +17,7 @@ spec:
       containers:
       - name: api
         image: prateek9814/book
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         env:
