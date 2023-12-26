@@ -7,6 +7,3 @@ def Count_ticket(Booked_tickets = 0):
     Remaining_tickets = Remaining_tickets - Booked_tickets
     return Remaining_tickets
 	
-
-
-    
