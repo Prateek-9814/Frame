@@ -2,16 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('remove the image present in local') {
-            steps {
-                sh 'docker rmi -f prateek9814/tk-booking'
-            }
-        }
         stage('Building the do docker image') {
             steps {
                 sh 'docker build -t prateek9814/tk-booking .'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing..'
