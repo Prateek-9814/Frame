@@ -19,7 +19,7 @@ pipeline {
         }
         stage('pushing the docker image into dockerhub') {
             steps {
-                  sh 'docker push prateek9814/tk-booking1'
+                  sh 'docker push prateek9814/tk-booking:latest'
             }
         }
     }
