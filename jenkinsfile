@@ -5,7 +5,7 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
 
-    stages {
+    stages('Building image and pushing to central repo') {
         stage('Building the do docker image') {
             steps {
                 sh 'docker build -t prateek9814/tk-booking .'
@@ -20,6 +20,26 @@ pipeline {
         stage('pushing the docker image into dockerhub') {
             steps {
                   sh 'docker push prateek9814/tk-booking:latest'
+            }
+        }
+        stage('remove docker image') {
+            steps {
+                  sh 'docker rmi prateek9814/tk-booking:latest'
+            }
+        }
+    }
+    stages('running the database conntainer ') {
+        stage('running the database container') {
+            steps {
+                sh 'docker rm -f abc'
+                sh 'docker run -d  --network python -e POSTGRES_PASSWORD=123456789 --name abc postgres'
+                echo 'database created'
+            }
+        }
+        stage('running the conntainer for application deploy') {
+            steps {
+                sh 'docker rm -f booking'
+                sh 'docker run -it -p 8000:8000 --network python -e DATABASE_URL=postgresql+psycopg2://postgres:123456789@abc --name booking prateek9814/book'
             }
         }
     }
