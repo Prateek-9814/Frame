@@ -29,8 +29,14 @@ pipeline {
         }
         stage('running the database container') {
             steps {
+                sh 'docker network create -d bridge python'
+                echo 'network created'
+            }
+        }
+        stage('running the database container') {
+            steps {
                 sh 'docker rm -f abc'
-                sh 'docker run -d  --network python -e POSTGRES_PASSWORD=123456789 --name abc postgres'
+                sh 'docker run -d --network python -e POSTGRES_PASSWORD=123456789 --name abc postgres'
                 echo 'database created'
             }
         }
