@@ -20,8 +20,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-            }
+                withCredentials([usernamePassword(credentialsId: 'dockerhubpwd', passwordVariable: 'dockerhubpwd')]) {
+                    // Perform actions requiring credentials here
+                    echo "Username: prateek9814"
+                    echo "Password: ${dockerhubpwd}"
+                }
         }
     }
 }
