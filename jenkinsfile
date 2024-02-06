@@ -1,6 +1,12 @@
 pipeline {
     agent any
+    environment {
 
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+     registry = "prateek9814/tk-booking1"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
     stages {
         stage('Building the do docker image') {
             steps {
@@ -8,23 +14,15 @@ pipeline {
                 echo 'image build completed'
             }
         }
-
-        stage('login to docker hub') {
+        stage('Logging into dockerhub account') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')])
-                sh 'docker login -u prateek9814 -p ${dockerhubpwd}'
-                echo 'successfully loged in'
-                sh 'docker push prateek9814/tk-booking'
-                echo 'image pushed to docker hub successfully'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        stage('Deploy') {
+        stage('pushing the docker image into dockerhub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhubpwd', passwordVariable: 'dockerhubpwd')]) {
-                    // Perform actions requiring credentials here
-                    echo "Username: prateek9814"
-                    echo "Password: ${dockerhubpwd}"
-                }
+                  sh 'docker push prateek9814/backend-lms1'
+            }
         }
     }
 }
