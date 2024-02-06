@@ -3,7 +3,6 @@ pipeline {
     environment {
 
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-     registry = "prateek9814/tk-booking1"
     }
 
     stages {
