@@ -14,10 +14,6 @@ pipeline {
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')])
                 sh 'docker login -u prateek9814 -p ${dockerhubpwd}'
                 echo 'successfully loged in'
-            }
-        }
-        stage('push image to docker hub') {
-            steps {
                 sh 'docker push prateek9814/tk-booking'
                 echo 'image pushed to docker hub successfully'
             }
