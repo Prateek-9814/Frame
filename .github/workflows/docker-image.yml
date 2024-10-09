@@ -14,12 +14,17 @@ jobs:
 
     steps:
     # Manual approval step (restricted to specific users)
-    - name: Await manual approval from user1 or user2
+    - uses: trstringer/manual-approval@v1
       if: github.ref == 'refs/heads/main'
-      uses: peter-evans/wait-for-approval@v3
       with:
-        custom-message: "Only prateek can approve this Docker image build."
+        secret: ${{ github.TOKEN }}
         approvers: Prateek-9814
+        minimum-approvals: 1
+        issue-title: "Deploying v1.3.5 to prod from staging"
+        issue-body: "Please approve or deny the deployment of version v1.3.5."
+        exclude-workflow-initiator-as-approver: false
+        additional-approved-words: ''
+        additional-denied-words: ''
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
