@@ -13,6 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Manual approval step (restricted to specific users)
+    - name: Await manual approval from user1 or user2
+      if: github.ref == 'refs/heads/main'
+      uses: peter-evans/wait-for-approval@v3
+      with:
+        custom-message: "Only prateek can approve this Docker image build."
+        approvers: Prateek-9814
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
