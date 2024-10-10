@@ -5,6 +5,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+permissions:
+  contents: read          # Read permission for repository contents
+  issues: write           # Required to create and manage issues for approval
+  pull-requests: write    # Required if approvals are tied to PRs
+  actions: write          # Allows running actions and writing to workflows
 
 jobs:
 
