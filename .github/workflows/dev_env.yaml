@@ -1,0 +1,20 @@
+name: Build Docker Image for Dev Environment
+
+on:
+  # Trigger this workflow on push to the 'dev' branch
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Build the Docker image for the development environment
+      - name: Build Docker Image
+        run: docker build . --file Dockerfile --tag my-image-dev:$(date +%s)
