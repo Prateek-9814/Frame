@@ -36,10 +36,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
-    - name: Automatic Revert
-  # You may pin to the exact commit or the version.
-  # uses: srt32/revert@e4acfad533b1ffc2ebff2de03fe1a64e44e6b929
-      uses: srt32/revert@v0.0.1
-          
-
 #test
