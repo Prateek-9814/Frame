@@ -2,11 +2,14 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-    # Allows you to run this workflows manually from the Actions tab
-  workflow_dispatch:
+    branches:
+      - main
+      - staging
+ 
+  workflow_dispatch: # Allows manual triggers
   pull_request:
     branches: [ "main" ]
+
 permissions:
   contents: read          # Read permission for repository contents
   issues: write           # Required to create and manage issues for approval
@@ -21,6 +24,11 @@ jobs:
 
     steps:
     # Manual approval step (restricted to specific users)
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+
     - uses: trstringer/manual-approval@v1
       if: github.ref == 'refs/heads/main'
       with:
@@ -28,11 +36,12 @@ jobs:
         approvers: Prateek-9814
         minimum-approvals: 1
         issue-title: "Deploying v1.3.5 to prod from staging"
-        issue-body: "Please approve or deny the deployment of version v1.3.5."
+        issue-body: "Please approve or deny the deployment"
         exclude-workflow-initiator-as-approver: false
         additional-approved-words: ''
         additional-denied-words: ''
+
+        
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
